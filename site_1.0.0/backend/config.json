@@ -1,0 +1,24 @@
+{
+    "users": {
+        "Administration": {
+            "name": "0-admin",
+            "password": "admin-purp"
+        },
+        "Hospital": {
+            "name": "1-hosp",
+            "password": "hosp-purp"
+        },
+        "MES": {
+            "name": "2-pol",
+            "password": "poli-purp"
+        },
+        "House-1": {
+            "name": "1-house",
+            "password": "house-pop-1"
+        },
+        "House-2": {
+            "name": "2-house",
+            "password": "house-pop-2"
+        }
+    }
+}
