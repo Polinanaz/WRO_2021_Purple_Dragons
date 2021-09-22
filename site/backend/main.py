@@ -201,18 +201,18 @@ def get_batteries_status() -> str:
 # заряда всех батарей города.
 @app.route("/get_status")
 def get_status() -> str:
-    battarey = get_batteries_status()
-    battarey = int(battarey[:-1]) # переводим в число полученный ответ от функции "get_batteries_status"
+    battery = get_batteries_status()
+    battery = int(battery[:-1]) # переводим в число полученный ответ от функции "get_batteries_status"
     # [:-1] - обрезание на 1 символ строки с задней стороны. Пример:
     # a = "Hello, world !" - нам нужно обрезать строку на один символ, то есть убрать !
     # Мы можем сделать так: a[:-1], что выдаст данный результат - "Hello, world".
-    # В данном случае battarey.replace("%", "") - аналогия к battarey[:-1], так как мы уже точно знаем,
+    # В данном случае battery.replace("%", "") - аналогия к battery[:-1], так как мы уже точно знаем,
     # какой символ нам нужно убрать.
-    if battarey > 80:
+    if battery > 80:
         return "режим переработки"
-    elif battarey < 80 and battarey > 50:
+    elif battery < 80 and battery > 50:
         return "cтандартный режим"
-    elif battarey < 50 and battarey > 20:
+    elif battery < 50 and battery > 20:
         return "режим сохранения энергии"
     return "режим энергосбережения"
 

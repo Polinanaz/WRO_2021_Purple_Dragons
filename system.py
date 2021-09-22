@@ -30,15 +30,25 @@ def collect_data():
     w = observation.weather
     temp = w.temperature('celsius')['temp']
     wind_speed = w.wind()['speed']
-    return temp, wind_speed, hour, month
+    return [temp, wind_speed, hour, month]
 
 
-def predict(temperature, wind_speed, hour, month):
-    model = load_model("./house_a_2_h5")
-    a = model.predict([[temperature, wind_speed, hour, month]])
+def predict_watts(data):
+    model = load_model("./house_a_2.h5")
+    a = model.predict([[[data]]])
     return a[0]/50
 
 
 while True:
-    pred = predict(collect_data())
-
+    charge = 80
+    pred = predict_watts(collect_data())
+    k = 100 #from % to watts 
+    final_charge = (charge*k-pred)/k
+    if final_charge > 80:
+        mode = 4
+    elif final_charge < 80 and final_charge > 50:
+        mode = 3
+    elif final_charge < 50 and final_charge > 20:
+        mode = 2
+    else: mode = 1
+    print(mode)
