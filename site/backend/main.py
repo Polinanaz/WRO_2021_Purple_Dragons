@@ -193,7 +193,7 @@ def get_houses_status() -> Response:
 # суммарно в процентном значении.
 @app.route("/get_batteries_status")
 def get_batteries_status() -> str:
-    with open("батареии.txt", "r") as file:
+    with open("батареи.txt", "r") as file:
         return f"{file.read()}%" # эквивалент к str(file.read()) + "%"
 
 
