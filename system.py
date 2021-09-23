@@ -17,13 +17,14 @@ import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import numpy as np  # linear algebra; Подключаем библиотеку numpy
 import matplotlib.pyplot as plt  # Отрисовка изображений
 
+def get_batteries_status() -> float:
+    with open("site/backend/батареи.txt", "r") as file:
+        return float(file.read())
 
 def collect_data():
     now = datetime.now()
     hour = int(str(time(now.hour))[0:2])
-    print(hour)
     month = int(str(time(now.month))[0:2])
-    print(month)
     place = "Москва"
     config_dict = get_default_config()
     config_dict['language'] = 'ru'
@@ -38,9 +39,12 @@ def collect_data():
 def predict(data):
     model = load_model("./house_a_2.h5")
     a = model.predict(data)
-    return a[0]/50
+    return a[0][0]/50
 
 
 while True:
+    charge=get_batteries_status()
     pred = predict(collect_data())
-    print(pred)
+    k=100
+    next_charge=(charge*k-pred)/k
+    print(next_charge)
