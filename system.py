@@ -20,9 +20,10 @@ import matplotlib.pyplot as plt  # Отрисовка изображений
 
 def collect_data():
     now = datetime.now()
-    hour = str(time(now.hour))
+    hour = int(str(time(now.hour))[0:2])
     print(hour)
-    month = int(time(now.month))
+    month = int(str(time(now.month))[0:2])
+    print(month)
     place = "Москва"
     config_dict = get_default_config()
     config_dict['language'] = 'ru'
@@ -31,12 +32,12 @@ def collect_data():
     w = observation.weather
     temp = w.temperature('celsius')['temp']
     wind_speed = w.wind()['speed']
-    return np.asarray([temp, wind_speed, hour, month])
+    return np.asarray([[temp, wind_speed, hour, month]])
 
 
 def predict(data):
     model = load_model("./house_a_2.h5")
-    a = model.predict([data])
+    a = model.predict(data)
     return a[0]/50
 
 
