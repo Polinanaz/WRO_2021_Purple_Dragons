@@ -17,9 +17,11 @@ import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 import numpy as np  # linear algebra; Подключаем библиотеку numpy
 import matplotlib.pyplot as plt  # Отрисовка изображений
 
+
 def get_batteries_status() -> float:
     with open("site/backend/батареи.txt", "r") as file:
         return float(file.read())
+
 
 def collect_data():
     now = datetime.now()
@@ -43,8 +45,8 @@ def predict(data):
 
 
 while True:
-    charge=get_batteries_status()
+    charge = get_batteries_status()
     pred = predict(collect_data())
-    k=100
-    next_charge=(charge*k-pred)/k
+    k = 100
+    next_charge = (charge*k-pred)/k
     print(next_charge)
