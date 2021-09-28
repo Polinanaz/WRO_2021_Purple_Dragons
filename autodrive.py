@@ -9,34 +9,34 @@ import sys
 from PIL import Image
 import bibl 
 
-def rect(img):
-    r=True
-    x=0
-    y=0
-    while r and((y<img.shape[0])or(x<img.shape[1])):
-        if x<img.shape[1]:
-            x+=1
-        else:
-            x=0
-            y+=1
-        print(img[y][x][0])
-        if (img[y][x][0]==0) and ((img[y][x][1]==255) and ((img[y][x][2]==0))):
-            r=False
-            fc=[x,y]
+# def rect(img):
+#     r=True
+#     x=0
+#     y=0
+#     while r and((y<img.shape[0])or(x<img.shape[1])):
+#         if x<img.shape[1]:
+#             x+=1
+#         else:
+#             x=0
+#             y+=1
+#         print(img[y][x][0])
+#         if (img[y][x][0]==0) and ((img[y][x][1]==255) and ((img[y][x][2]==0))):
+#             r=False
+#             fc=[x,y]
     
-    r=True
-    x=img.shape[1]-1
-    y=img.shape[0]-1
-    while r and((y>0)or(x>0)):
-        if x>1:
-            x-=1
-        else:
-            x=img.shape[1]
-            y-=1
-        if (img[y][x][0]==0) and ((img[y][x][1]==255) and ((img[y][x][2]==0)))and (y!=-1)and (x!=-1):
-            r=False
-            sc=[x,y]
-    return fc,sc
+#     r=True
+#     x=img.shape[1]-1
+#     y=img.shape[0]-1
+#     while r and((y>0)or(x>0)):
+#         if x>1:
+#             x-=1
+#         else:
+#             x=img.shape[1]
+#             y-=1
+#         if (img[y][x][0]==0) and ((img[y][x][1]==255) and ((img[y][x][2]==0)))and (y!=-1)and (x!=-1):
+#             r=False
+#             sc=[x,y]
+#     return fc,sc
 
 
 
@@ -82,8 +82,8 @@ while True:
         # data = np.array(image)
         # data[:,:,:3][black] = [255, 0, 0]
         # image = data
-        a=[rect(image)]
-        cv2.rectangle(image, (a[0][0],a[0][1]), (a[1][2],a[1][3]), (0, 255, 255), 10)
+        # a=[rect(image)]
+        # cv2.rectangle(image, (a[0][0],a[0][1]), (a[1][2],a[][3]), (0, 255, 255), 10)
         cv2.imshow("Autopilot", image)
         k = cv2.waitKey(30)
         if k == 27:
